@@ -41,7 +41,7 @@ jobs:
 
       - name: Listing and validating commit messages
         run: |
-          git --no-pager log --format=%s ${{ env.NX_BASE }}..${{ env.NX_HEAD }} 2> /dev/null > commitsList
+          /usr/bin/git --no-pager log --format=%s ${{ env.NX_BASE }}..${{ env.NX_HEAD }} 2> /dev/null > commitsList
 
           echo "Commits messages list:"
           cat commitsList
