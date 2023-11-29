@@ -11,6 +11,7 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+        with:
           fetch-depth: 0
       
       - name: Fetching "from" and "to" commits SHAs
