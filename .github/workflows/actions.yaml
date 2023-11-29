@@ -14,27 +14,27 @@ jobs:
       
       - name: Commits message validation
         uses: nrwl/nx-set-shas@v4
-          with:
-            # The "main" branch of your repository (the base branch which you target with PRs).
-            # Common names for this branch include main and master.
-            #
-            # Default: main
-            main-branch-name: "master"
+        with:
+          # The "main" branch of your repository (the base branch which you target with PRs).
+          # Common names for this branch include main and master.
+          #
+          # Default: main
+          main-branch-name: "master"
 
-            # The type of event to check for the last successful commit corresponding to that workflow-id, e.g. push, pull_request, release etc.
-            #
-            # Default: push
-            last-successful-event: ""
+          # The type of event to check for the last successful commit corresponding to that workflow-id, e.g. push, pull_request, release etc.
+          #
+          # Default: push
+          last-successful-event: ""
 
-            # The path where your repository is. This is only required for cases where the repository code is checked out or moved to a specific path.
-            #
-            # Default: .
-            working-directory: ""
+          # The path where your repository is. This is only required for cases where the repository code is checked out or moved to a specific path.
+          #
+          # Default: .
+          working-directory: ""
 
-            # The ID of the github action workflow to check for successful run or the name of the file name containing the workflow.
-            # E.g. 'ci.yml'. If not provided, current workflow id will be used
-            #
-            workflow-id: ""
+          # The ID of the github action workflow to check for successful run or the name of the file name containing the workflow.
+          # E.g. 'ci.yml'. If not provided, current workflow id will be used
+          #
+          workflow-id: ""
         run: |
             echo "BASE: ${{ env.NX_BASE }}"
             echo "HEAD: ${{ env.NX_HEAD }}"
