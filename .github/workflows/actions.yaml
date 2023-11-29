@@ -35,9 +35,9 @@ jobs:
           # E.g. 'ci.yml'. If not provided, current workflow id will be used
           #
           workflow-id: ""
-        run: |
-            echo "BASE: ${{ env.NX_BASE }}"
-            echo "HEAD: ${{ env.NX_HEAD }}"
+      - run: |
+          echo "BASE: ${{ env.NX_BASE }}"
+          echo "HEAD: ${{ env.NX_HEAD }}"
 
       - name: Set up python
         uses: actions/setup-python@v4
