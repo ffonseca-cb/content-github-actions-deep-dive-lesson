@@ -40,9 +40,12 @@ jobs:
           echo "TO: ${{ env.NX_HEAD }}"
 
       - name: Listing and validating commit messages
-        uses: actions/checkout@v4
-      - run: |
+        run: |
+          /usr/bin/git version
           /usr/bin/git --no-pager log --format=%s ${{ env.NX_BASE }}..${{ env.NX_HEAD }} 2> /dev/null > commitsList
+
+          cat --version
+          /usr/bin/cat --version
 
           echo "Commits messages list:"
           cat commitsList
