@@ -1,4 +1,4 @@
-name: Deploy Lambda Function
+name: Validating commit messages
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
       
-      - name: Commits message validation
+      - name: Fetching "from" and "to" commits SHAs
         uses: nrwl/nx-set-shas@v4
         with:
           # The "main" branch of your repository (the base branch which you target with PRs).
@@ -36,27 +36,12 @@ jobs:
           #
           workflow-id: ""
       - run: |
-          echo "BASE: ${{ env.NX_BASE }}"
-          echo "HEAD: ${{ env.NX_HEAD }}"
+          echo "FROM: ${{ env.NX_BASE }}"
+          echo "TO: ${{ env.NX_HEAD }}"
 
-      - name: Set up python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.8
-
-      - name: Install libraries
+      - name: Listing and validating commit messages
         run: |
-            cd function
-            python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+          git --no-pager log --format=%s ${{ env.NX_BASE }}..${{ env.NX_HEAD }} 2> /dev/null > commitsList
 
-      - name: Create zip bundle
-        run: |
-            cd function
-            zip -r ../${{ github.sha}}.zip .
-
-      - name: Achieve artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: zipped-bundle
-          path: ${{ github.sha}}.zip
+          echo "Commits messages list:"
+          cat commitsList
